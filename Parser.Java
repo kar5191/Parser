@@ -117,6 +117,7 @@ public class Parser {
 	  {
 		  currentToken--; //new addition
 		  error(2);
+		  currentToken++;
 	  }
 	  return error;
   }
@@ -156,7 +157,10 @@ public class Parser {
             	  parent.add(node);
             	  currentToken++;
               }
-              else error(3);
+              else 
+				  error(3);
+            	  
+              
 
 		  }
 
@@ -173,7 +177,10 @@ public class Parser {
 				  currentToken++;
 			  }
 			  else
+			  {
+				  if(currentToken<tokens.size())
 				  error(3);
+			  }
 		  }
          
 		  else if(tokens.get(currentToken).getWord().equalsIgnoreCase("return"))
