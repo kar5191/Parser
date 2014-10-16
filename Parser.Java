@@ -43,9 +43,17 @@ public class Parser {
 
   public static void error(int err)
   {
-	  //int n=1;
+	  int n=0;
 	  //if(currentToken<tokens.size()) 
-	  int n=tokens.get(currentToken).getLine();
+	  if(err!=4 && (tokens.get(currentToken-1).getLine()<tokens.get(currentToken).getLine()))
+	  {
+		  n=tokens.get(currentToken-1).getLine();
+	  }
+	  else
+	  {
+		  n=tokens.get(currentToken).getLine();
+	  }
+	  
 	  switch(err)
 	  {
 	  case 1: 
