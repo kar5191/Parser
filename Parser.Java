@@ -45,7 +45,7 @@ public class Parser {
   {
 	  int n=0;
 	  //if(currentToken<tokens.size()) 
-	  if(err!=4 && (tokens.get(currentToken-1).getLine()<tokens.get(currentToken).getLine()))
+	  if(err!=4 && currentToken!=0 && (tokens.get(currentToken-1).getLine()<tokens.get(currentToken).getLine()))
 	  {
 		  n=tokens.get(currentToken-1).getLine();
 	  }
