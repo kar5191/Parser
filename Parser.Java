@@ -229,7 +229,7 @@ public class Parser {
 
 		  else 
 		  {
-			  error(4);
+			  error(4);			  
 			  while(currentToken<tokens.size()&&!(tokens.get(currentToken).getWord().equalsIgnoreCase("print")||tokens.get(currentToken).getToken().equalsIgnoreCase("IDENTIFIER")||tokens.get(currentToken).getWord().equalsIgnoreCase("int")||tokens.get(currentToken).getWord().equalsIgnoreCase("float")||tokens.get(currentToken).getWord().equalsIgnoreCase("boolean")||tokens.get(currentToken).getWord().equalsIgnoreCase("void")||tokens.get(currentToken).getWord().equalsIgnoreCase("char")||tokens.get(currentToken).getWord().equalsIgnoreCase("string")||tokens.get(currentToken).getWord().equalsIgnoreCase("while")||tokens.get(currentToken).getWord().equalsIgnoreCase("if")||tokens.get(currentToken).getWord().equalsIgnoreCase("return")||tokens.get(currentToken).getWord().equals("}")))
 			  {
 				  currentToken++;
@@ -290,7 +290,12 @@ public class Parser {
 		  currentToken++;
 	  }
 
-	  else error(6);
+	  else 
+	  {
+		  node=new DefaultMutableTreeNode("error" + "(" + tokens.get(currentToken).getWord() + ")");
+		  parent.add(node);
+		  error(6);
+	  }
 
 	  return error;
   }
@@ -734,6 +739,9 @@ public class Parser {
     
     else {
       error(9);
+      //DefaultMutableTreeNode node;
+	  node=new DefaultMutableTreeNode("error" + "(" + tokens.get(currentToken).getWord() + ")");
+	  parent.add(node);
     }
 
     return false;
