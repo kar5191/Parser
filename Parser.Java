@@ -79,7 +79,7 @@ public class Parser {
 		  break;
 	  case 8:
 		  gui.writeConsole("Line" +n+": expected ("); 
-		  System.out.println("line" +n+": expected (");
+		//  System.out.println("line" +n+": expected (");
 		  break;
 	  case 9:
 		  gui.writeConsole("Line" +n+": expected value, identifier, (");
@@ -94,7 +94,7 @@ public class Parser {
 	  
 	  boolean error=false;
 	  DefaultMutableTreeNode node;      
-	  System.out.println(tokens.size());
+	 // System.out.println(tokens.size());
 	  if(currentToken < tokens.size() && tokens.get(currentToken).getWord().equals("{"))
 	  {
 		  node= new DefaultMutableTreeNode("{");
@@ -134,7 +134,7 @@ public class Parser {
   private static boolean rule_body(DefaultMutableTreeNode parent)
   {	  
 	  boolean error=false;
-	  System.out.println("inside body");
+	 // System.out.println("inside body");
 	  //if(currentToken<tokens.size())
 	  while(currentToken<tokens.size() && !tokens.get(currentToken).getWord().equals("}"))
 	  {
@@ -245,7 +245,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside assignment");
+	 // System.out.println("Inside assignment");
 	  node=new DefaultMutableTreeNode("identifier" + "(" + tokens.get(currentToken).getWord() +")");
 	  parent.add(node);
 	  //if(currentToken<tokens.size())
@@ -279,7 +279,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside rule variable");
+	 // System.out.println("Inside rule variable");
 	  node=new DefaultMutableTreeNode(tokens.get(currentToken).getWord());
 	  parent.add(node);
 	  currentToken++;
@@ -292,8 +292,7 @@ public class Parser {
 
 	  else 
 	  {
-		  node=new DefaultMutableTreeNode("error" + "(" + tokens.get(currentToken).getWord() + ")");
-		  parent.add(node);
+	
 		  error(6);
 	  }
 
@@ -305,7 +304,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside rule print");
+	//  System.out.println("Inside rule print");
 	  node=new DefaultMutableTreeNode(tokens.get(currentToken).getWord());
 	  parent.add(node);
 	  currentToken++;
@@ -347,7 +346,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside rule return");
+	 // System.out.println("Inside rule return");
 	  node=new DefaultMutableTreeNode(tokens.get(currentToken).getWord());
 	  parent.add(node);
 	  currentToken++;
@@ -359,7 +358,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside While");
+	 // System.out.println("Inside While");
 	  node=new DefaultMutableTreeNode("while");
 	  parent.add(node);
 	  currentToken++;
@@ -409,7 +408,7 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside if");
+	//  System.out.println("Inside if");
 	  node=new DefaultMutableTreeNode("if");
 	  parent.add(node);
 	  currentToken++;
@@ -467,12 +466,12 @@ public class Parser {
   {
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
-	  System.out.println("Inside expression");
-	  System.out.println("Current Token:" +tokens.get(currentToken).getWord());
+	 // System.out.println("Inside expression");
+	//  System.out.println("Current Token:" +tokens.get(currentToken).getWord());
 	  node=new DefaultMutableTreeNode("X");
 	  parent.add(node);
 	  error=rule_X(node);
-	  System.out.println("In expression");
+	//  System.out.println("In expression");
 	  
 	  while(currentToken<tokens.size()&&tokens.get(currentToken).getWord().equals("|"))
 	  {
@@ -482,7 +481,7 @@ public class Parser {
 		  node=new DefaultMutableTreeNode("X");
 		  parent.add(node);
 		  error=rule_X(node);
-		  System.out.println("called X from within while");
+		 // System.out.println("called X from within while");
 	  }
 	  
 	  return error;
@@ -491,13 +490,13 @@ public class Parser {
   
   private static boolean rule_X(DefaultMutableTreeNode parent)
   {
-	  System.out.println("Inside X");
+	 // System.out.println("Inside X");
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
 	  node=new DefaultMutableTreeNode("Y");
 	  parent.add(node);
 	  error=rule_Y(node);
-	  System.out.println("In X");
+	 // System.out.println("In X");
 	  
 	  while(currentToken<tokens.size()&&tokens.get(currentToken).getWord().equals("&"))
 	  {
@@ -513,7 +512,7 @@ public class Parser {
 
   private static boolean rule_Y(DefaultMutableTreeNode parent)
   {
-	  System.out.println("Inside Y");
+	 // System.out.println("Inside Y");
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
 	  if(currentToken<tokens.size()&&tokens.get(currentToken).getWord().equals("!"))
@@ -525,20 +524,20 @@ public class Parser {
 	  node=new DefaultMutableTreeNode("R");
 	  parent.add(node);
 	  error=rule_R(node);
-	  System.out.println("In Y");
+	  //System.out.println("In Y");
 	  return error;
   }
   
   
   private static boolean rule_R(DefaultMutableTreeNode parent)
   {
-	  System.out.println("Inside R");
+	 // System.out.println("Inside R");
 	  boolean error=false;
 	  DefaultMutableTreeNode node;
 	  node=new DefaultMutableTreeNode("E");
 	  parent.add(node);
 	  error=rule_E(node);
-	  System.out.println("In R");
+	 // System.out.println("In R");
 	  while(currentToken<tokens.size()&&(tokens.get(currentToken).getWord().equals("<")||tokens.get(currentToken).getWord().equals(">")||tokens.get(currentToken).getWord().equals("==")||tokens.get(currentToken).getWord().equals("!=")))
 	  {
 		  if(tokens.get(currentToken).getWord().equals("<"))
@@ -574,13 +573,13 @@ public class Parser {
   private static boolean rule_E(DefaultMutableTreeNode parent) {
     
 
-	  System.out.println("Inside E");
+	 // System.out.println("Inside E");
 	  boolean error;
 	  DefaultMutableTreeNode node;
 	  node = new DefaultMutableTreeNode("A");
 	  parent.add(node);	
 	  error = rule_A(node);
-	  System.out.println("In E");
+	 // System.out.println("In E");
 
 	  while (currentToken < tokens.size() && tokens.get(currentToken).getWord().equals("+") || currentToken < tokens.size() && tokens.get(currentToken).getWord().equals("-")) {
 
@@ -739,9 +738,7 @@ public class Parser {
     
     else {
       error(9);
-      //DefaultMutableTreeNode node;
-	  node=new DefaultMutableTreeNode("error" + "(" + tokens.get(currentToken).getWord() + ")");
-	  parent.add(node);
+ 
     }
 
     return false;
